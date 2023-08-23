@@ -17,6 +17,7 @@ from ..task_modules.samplers import PseudoSampler
 from ..utils import images_to_levels, multi_apply, unmap
 from .base_dense_head import BaseDenseHead
 
+import pdb
 
 @MODELS.register_module()
 class AnchorHead(BaseDenseHead):
@@ -493,6 +494,7 @@ class AnchorHead(BaseDenseHead):
             dict: A dictionary of loss components.
         """
         featmap_sizes = [featmap.size()[-2:] for featmap in cls_scores]
+        # pdb.set_trace()
         assert len(featmap_sizes) == self.prior_generator.num_levels
 
         device = cls_scores[0].device

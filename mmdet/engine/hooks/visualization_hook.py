@@ -14,6 +14,7 @@ from mmdet.datasets.samplers import TrackImgSampler
 from mmdet.registry import HOOKS
 from mmdet.structures import DetDataSample, TrackDataSample
 
+import pdb
 
 @HOOKS.register_module()
 class DetVisualizationHook(Hook):
@@ -124,7 +125,7 @@ class DetVisualizationHook(Hook):
             self.test_out_dir = osp.join(runner.work_dir, runner.timestamp,
                                          self.test_out_dir)
             mkdir_or_exist(self.test_out_dir)
-
+        
         for data_sample in outputs:
             self._test_index += 1
 
@@ -132,6 +133,9 @@ class DetVisualizationHook(Hook):
             img_bytes = get(img_path, backend_args=self.backend_args)
             img = mmcv.imfrombytes(img_bytes, channel_order='rgb')
 
+            ####jinlong
+            # img = mmcv.imresize(img, (640, 640), return_scale=False)
+            # pdb.set_trace()
             out_file = None
             if self.test_out_dir is not None:
                 out_file = osp.basename(img_path)

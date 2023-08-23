@@ -132,6 +132,7 @@ class PackDetInputs(BaseTransform):
             data_sample.gt_sem_seg = gt_sem_seg_data
 
         img_meta = {}
+        # print("11111111111111111111111111111",self.meta_keys)
         for key in self.meta_keys:
             assert key in results, f'`{key}` is not found in `results`, ' \
                 f'the valid keys are {list(results)}.'

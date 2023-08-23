@@ -10,6 +10,8 @@ from torch import Tensor
 from mmdet.registry import MODELS
 from mmdet.utils import ConfigType, MultiConfig, OptConfigType
 
+import pdb
+
 
 @MODELS.register_module()
 class FPN(BaseModule):
@@ -168,6 +170,7 @@ class FPN(BaseModule):
         Returns:
             tuple: Feature maps, each is a 4D-tensor.
         """
+        # pdb.set_trace()
         assert len(inputs) == len(self.in_channels)
 
         # build laterals

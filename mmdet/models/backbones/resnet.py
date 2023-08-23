@@ -10,6 +10,7 @@ from torch.nn.modules.batchnorm import _BatchNorm
 from mmdet.registry import MODELS
 from ..layers import ResLayer
 
+import pdb
 
 class BasicBlock(BaseModule):
     expansion = 1
@@ -90,7 +91,6 @@ class BasicBlock(BaseModule):
             out = _inner_forward(x)
 
         out = self.relu(out)
-
         return out
 
 
@@ -643,6 +643,7 @@ class ResNet(BaseModule):
             x = res_layer(x)
             if i in self.out_indices:
                 outs.append(x)
+        # pdb.set_trace()
         return tuple(outs)
 
     def train(self, mode=True):

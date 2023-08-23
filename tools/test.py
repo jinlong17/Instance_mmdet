@@ -14,6 +14,7 @@ from mmdet.evaluation import DumpDetResults
 from mmdet.registry import RUNNERS
 from mmdet.utils import setup_cache_size_limit_of_dynamo
 
+import pdb
 
 # TODO: support fuse_conv_bn and format_only
 def parse_args():
@@ -89,7 +90,7 @@ def main():
 
     if args.show or args.show_dir:
         cfg = trigger_visualization_hook(cfg, args)
-
+    # pdb.set_trace()
     if args.tta:
 
         if 'tta_model' not in cfg:

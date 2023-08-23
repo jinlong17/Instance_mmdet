@@ -20,6 +20,7 @@ from ..structures import DetDataSample
 from ..structures.mask import BitmapMasks, PolygonMasks, bitmap_to_polygon
 from .palette import _get_adaptive_scales, get_palette, jitter_color
 
+import pdb
 
 @VISUALIZERS.register_module()
 class DetLocalVisualizer(Visualizer):
@@ -122,6 +123,7 @@ class DetLocalVisualizer(Visualizer):
             np.ndarray: the drawn image which channel is RGB.
         """
         self.set_image(image)
+        print('66666666666666', image.shape)
 
         if 'bboxes' in instances and instances.bboxes.sum() > 0:
             bboxes = instances.bboxes
@@ -433,7 +435,9 @@ class DetLocalVisualizer(Visualizer):
         image = image.clip(0, 255).astype(np.uint8)
         classes = self.dataset_meta.get('classes', None)
         palette = self.dataset_meta.get('palette', None)
-
+        ####jinlong
+        # image = mmcv.imresize(image, (640, 640), return_scale=False)
+        print('5555555555555555555555555555555', image.shape)
         gt_img_data = None
         pred_img_data = None
 
@@ -442,6 +446,8 @@ class DetLocalVisualizer(Visualizer):
 
         if draw_gt and data_sample is not None:
             gt_img_data = image
+            print('111111111111111111111111', gt_img_data.shape)
+            # pdb.set_trace()####jinlong
             if 'gt_instances' in data_sample:
                 gt_img_data = self._draw_instances(image,
                                                    data_sample.gt_instances,

@@ -114,7 +114,8 @@ class CocoDataset(BaseDetDataset):
         data_info = {}
 
         # TODO: need to change data_prefix['img'] to data_prefix['img_path']
-        img_path = osp.join(self.data_prefix['img'], img_info['file_name'])
+        # img_path = osp.join(self.data_prefix['img'], img_info['file_name'])
+        img_path = osp.join(self.data_prefix['img_path'], img_info['file_name'])
         if self.data_prefix.get('seg', None):
             seg_map_path = osp.join(
                 self.data_prefix['seg'],
@@ -142,7 +143,9 @@ class CocoDataset(BaseDetDataset):
             inter_h = max(0, min(y1 + h, img_info['height']) - max(y1, 0))
             if inter_w * inter_h == 0:
                 continue
-            if ann['area'] <= 0 or w < 1 or h < 1:
+            # if ann['area'] <= 0 or w < 1 or h < 1:
+            #     continue
+            if  w < 1 or h < 1:
                 continue
             if ann['category_id'] not in self.cat_ids:
                 continue

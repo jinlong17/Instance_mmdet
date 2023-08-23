@@ -121,6 +121,7 @@ class CocoMetric(BaseMetric):
         # if ann_file is not specified,
         # initialize coco api with the converted dataset
         if ann_file is not None:
+            # print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ', ann_file)
             with get_local_path(
                     ann_file, backend_args=self.backend_args) as local_path:
                 self._coco_api = COCO(local_path)
